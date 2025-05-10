@@ -17,11 +17,11 @@ class WeatherApp:
         self.style.configure('TButton', font=('Arial', 12))
         self.style.configure('TEntry', font=('Arial', 12))
         
-        # Chave da API OpenWeatherMap (você precisa se cadastrar no site deles para obter uma chave gratuita)
+        # Chave da API OpenWeatherMap (necessária para fazer requisições)
         self.API_KEY = "3ea903981b4a76ccc07845ba61a8a801"  # Substitua pela sua chave
-        self.BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
+        self.BASE_URL = "http://api.openweathermap.org/data/2.5/weather" # URL da API
         
-        self.create_widgets()
+        self.create_widgets() # Cria os widgets da interface gráfica
     
     def create_widgets(self):
         # Frame principal
@@ -36,10 +36,10 @@ class WeatherApp:
         city_frame = ttk.Frame(main_frame)
         city_frame.pack(fill=tk.X, pady=10)
         
-        ttk.Label(city_frame, text="Cidade:").pack(side=tk.LEFT)
-        self.city_entry = ttk.Entry(city_frame, width=30)
-        self.city_entry.pack(side=tk.LEFT, padx=10)
-        self.city_entry.bind('<Return>', lambda e: self.get_weather())
+        ttk.Label(city_frame, text="Cidade:").pack(side=tk.LEFT) # Label para a entrada da cidade
+        self.city_entry = ttk.Entry(city_frame, width=30) # Campo de entrada para o nome da cidade
+        self.city_entry.pack(side=tk.LEFT, padx=10) # Adiciona espaçamento entre o label e o campo de entrada
+        self.city_entry.bind('<Return>', lambda e: self.get_weather()) # Permite buscar o clima pressionando Enter
         
         # Botão de busca
         search_button = ttk.Button(main_frame, text="Buscar Clima", command=self.get_weather)
@@ -63,7 +63,7 @@ class WeatherApp:
     def get_weather(self):
         city = self.city_entry.get().strip()
         if not city:
-            messagebox.showerror("Erro", "Por favor, digite o nome de uma cidade.")
+            messagebox.showerror("Erro", "Por favor, digite o nome de uma cidade.") # Verifica se o campo de entrada está vazio
             return
         
         try:
